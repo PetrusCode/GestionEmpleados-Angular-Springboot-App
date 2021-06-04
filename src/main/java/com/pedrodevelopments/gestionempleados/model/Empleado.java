@@ -7,23 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@NoArgsConstructor
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Empleado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	@Column(nullable = false, updatable = false)
 	@NotNull(message = "The id should not be null")
 	@Positive(message = "The id should be greater than 0")
@@ -45,7 +45,5 @@ public class Empleado implements Serializable {
 	private String fotoDePerfilUrl;
 
 	@Column(name = "codigoEmpleado", nullable = false, updatable = false)
-	@NotNull(message = "The code employee should not be null")
-	@NotBlank(message = "The code employee should not be blank")
 	private String codigoEmpleado;
 }

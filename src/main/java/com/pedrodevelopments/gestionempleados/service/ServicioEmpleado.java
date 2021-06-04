@@ -3,6 +3,8 @@ package com.pedrodevelopments.gestionempleados.service;
 import java.util.List;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.pedrodevelopments.gestionempleados.exceptions.UserNotFoundException;
 import com.pedrodevelopments.gestionempleados.model.Empleado;
 
 @Service
+@Transactional
 public class ServicioEmpleado {
 
 	private final EmpleadoRepository empleadoRepository;

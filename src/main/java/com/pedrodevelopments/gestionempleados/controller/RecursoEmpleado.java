@@ -2,6 +2,7 @@ package com.pedrodevelopments.gestionempleados.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import com.pedrodevelopments.gestionempleados.service.ServicioEmpleado;
 @RequestMapping("/empleado")
 public class RecursoEmpleado {
 
+	@Autowired
 	private final ServicioEmpleado servicioEmpleado;
 
 	public RecursoEmpleado(ServicioEmpleado servicioEmpleado) {
@@ -67,15 +69,40 @@ public class RecursoEmpleado {
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Empleado> actualizarEmpleado(
+	public ResponseEntity<Empleado> actualizarrEmpleado(
 			@RequestBody Empleado empleado) {
 
 		Empleado actualizarEmpleado = servicioEmpleado
 				.actualizarEmpleado(empleado);
+
 		return new ResponseEntity<>(actualizarEmpleado, HttpStatus.OK);
+
+		// Forma corta<--
+		// return ResponseEntity.ok(servicioEmpleado.agregarEmpleado(empleado));
 
 	}
 
+	/*
+	 * @Autowired EmpleadoRepository empleadoRepository;
+	 * 
+	 * @PutMapping("/update/{id}") public ResponseEntity<Empleado>
+	 * actualizarEmpleadoById(
+	 * 
+	 * @PathVariable("id") Long id, @RequestBody Empleado empleado) {
+	 * Optional<Empleado> datosEmpleado = empleadoRepository.findById(id);
+	 * 
+	 * if (datosEmpleado.isPresent()) { Empleado _empleado =
+	 * datosEmpleado.get(); _empleado.setNombre(empleado.getNombre());
+	 * _empleado.setEmail(empleado.getEmail());
+	 * _empleado.setPuestoNombre(empleado.getCodigoEmpleado());
+	 * _empleado.setFotoDePerfilUrl(empleado.getFotoDePerfilUrl());
+	 * _empleado.setTelefono(empleado.getTelefono());
+	 * _empleado.setCodigoEmpleado(empleado.getCodigoEmpleado());
+	 * 
+	 * return new ResponseEntity<>(empleadoRepository.save(empleado),
+	 * HttpStatus.OK); } else { return new
+	 * ResponseEntity<>(HttpStatus.NOT_FOUND); } }
+	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> borrarEmpleado(@PathVariable("id") Long id) {
 
