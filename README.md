@@ -7,4 +7,4 @@ This is a Agular Application with SpringBoot to manage employees, you can add, u
 
 # Requeriments
 
-You should configure your database in the properties files
+You should have node.js 14.17.0 or newer with npm to | ng serve | the angular application.
